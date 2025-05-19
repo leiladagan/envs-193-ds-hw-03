@@ -1,2 +1,3 @@
-# envs-193-ds-hw-03
+# ENVS 193 DS HW 03
+## Leila Dagan
 HW 3
