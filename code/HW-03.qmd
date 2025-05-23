@@ -1,0 +1,73 @@
+---
+title: "ENVS 193DS HW 03"
+date: 2025-05-08
+author: "Leila Dagan" 
+format: html
+---
+```{r}
+library(tidyverse)
+library(here)
+library(flextable)
+library(janitor)
+library(dplyr)
+```
+
+### Problem 1. Personal data (30 points)
+#### a. Data summarizing (5 points)
+
+In 1-2 sentences, describe how you could summarize your data to compare your response variable between categories or groups of your choosing. For example, are you counting observations and comparing counts between groups? Are you taking the mean and comparing means between groups? Are you finding the maximum, minimum, range? Are you adding numbers together?  
+
+Be sure to describe _why_ comparing between the groups you chose is informative. For example, you might calculate the mean number of steps you take to compare between week days, but what about those weekdays is _different_ (e.g. "I could calculate the mean number of steps I took to compare average step count between weekdays because I have more classes on Monday than on any other day of the week, so I think I walk more on Monday.")
+
+I am trying to figure out whether or not my average shower length differs between work days and non work days, as my job is outside. I could take the mean shower length of work days and non work days, and comparing them. 
+
+#### b. Visualization (10 points)
+
+Using the summary you described in part a, **create a visualization of your data comparing your summarized response variable between groups**. If you are calculating a mean or median, show the underlying data in addition to your summary.
+
+Use colors in your figure (that are not the default ggplot settings).
+
+Make sure your axis labels are full, readable text (not just your column names). 
+
+```{r}
+my_data_clean <- my_data |> # starting with my personal data frame 
+  clean_names() |> # simplifying my column names 
+  mutate(
+    shower_length_min = trimws(shower_length_min),  # Trim whitespace
+    shower_length_min = na_if(shower_length_min, "n/a"), # Replace "n/a" with NA
+    shower_length_min = as.numeric(shower_length_min) # Convert to numeric
+  )
+my_data_clean
+```
+
+```{r}
+mean(my_data_clean$shower_length_min, na.rm = TRUE)
+```
+
+```{r}
+ggplot(my_data_clean, aes(x = work_day, 
+                          y = shower_length_min, 
+                          color = work_day)) +
+  # Add individual data points with jitter
+  geom_jitter(data = my_data_clean,
+              aes(x = work_day, y = shower_length_min),
+              width = 0.2, # jitter horizontally 
+              alpha = 0.4,
+              color = "#2c7fb8") +
+  # Customize theme and labels
+stat_summary(fun = mean, #showing the mean 
+             geom = "point", # making a point for the mean 
+             shape = 18, # changing shape to triangle 
+             size = 2, # changing size of the point 
+             color = "darkblue" # changing color of the point 
+             ) +
+   theme_minimal() +
+  labs(x = "Work Day (yes or no)",
+       y = "Shower Length (min)",
+       title = "Shower length in minutes on Work and Non Work Days") +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 10),
+        title = element_text(size = 10))
+
+```
+
