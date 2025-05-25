@@ -19,7 +19,7 @@ In 1-2 sentences, describe how you could summarize your data to compare your res
 
 Be sure to describe _why_ comparing between the groups you chose is informative. For example, you might calculate the mean number of steps you take to compare between week days, but what about those weekdays is _different_ (e.g. "I could calculate the mean number of steps I took to compare average step count between weekdays because I have more classes on Monday than on any other day of the week, so I think I walk more on Monday.")
 
-I am trying to figure out whether or not my average shower length differs between work days and non work days, as my job is outside. I could take the mean shower length of work days and non work days, and comparing them. 
+I am trying to figure out whether or not my average shower length differs between work days and non work days, as my job is outside. I could look at the shower length of work days and non work days, and compare them by looking at the both means and standard errors. 
 
 #### b. Visualization (10 points)
 
@@ -41,10 +41,6 @@ my_data_clean
 ```
 
 ```{r}
-mean(my_data_clean$shower_length_min, na.rm = TRUE)
-```
-
-```{r}
 ggplot(my_data_clean, aes(x = work_day, 
                           y = shower_length_min, 
                           color = work_day)) +
@@ -61,6 +57,10 @@ stat_summary(fun = mean, #showing the mean
              size = 2, # changing size of the point 
              color = "darkblue" # changing color of the point 
              ) +
+  stat_summary(geom = "errorbar", # showing error bars 
+               fun.data = mean_se, # showing the mean standard error 
+               width = 0.1, # adjusting the bar width 
+               color = "purple") + # making the color of error bars purple 
    theme_minimal() +
   labs(x = "Work Day (yes or no)",
        y = "Shower Length (min)",
