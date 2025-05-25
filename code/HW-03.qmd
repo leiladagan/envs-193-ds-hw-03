@@ -41,15 +41,14 @@ my_data_clean
 ```
 
 ```{r}
-ggplot(my_data_clean, aes(x = work_day, 
-                          y = shower_length_min, 
+ggplot(my_data_clean, aes(x = work_day, # x axis work day 
+                          y = shower_length_min, # y axis shower length 
                           color = work_day)) +
   # Add individual data points with jitter
   geom_jitter(data = my_data_clean,
               aes(x = work_day, y = shower_length_min),
               width = 0.2, # jitter horizontally 
-              alpha = 0.4,
-              color = "#2c7fb8") +
+              alpha = 0.4) +
   # Customize theme and labels
 stat_summary(fun = mean, #showing the mean 
              geom = "point", # making a point for the mean 
@@ -62,12 +61,51 @@ stat_summary(fun = mean, #showing the mean
                width = 0.1, # adjusting the bar width 
                color = "purple") + # making the color of error bars purple 
    theme_minimal() +
+  theme(legend.position = "none") + 
   labs(x = "Work Day (yes or no)",
        y = "Shower Length (min)",
        title = "Shower length in minutes on Work and Non Work Days") +
   theme(axis.text = element_text(size = 12),
         axis.title = element_text(size = 10),
-        title = element_text(size = 10))
+        title = element_text(size = 10)) + 
+  scale_color_manual (values = c("N" = "#123456", "Y" = "#237237"))
 
+```
+
+#### c. Caption (5 points)
+
+Write a _caption_ for your figure.
+Figure 1. Shower Length in Minutes on Work days and Non Work days. Each point represents a shower (min). N = non work day, Y = work day. 
+
+#### d. Table presentation (10 points)
+
+Using `gt` or `flextable`, create a table with the same data summary that you describe in part a and visualized in part b. For example, if you described and visualized means, make a table with means. If you need to, round any numbers to one decimal point.  
+
+Display the output.
+
+```{r}
+my_data_summary <- my_data_clean |> # starting with my clean data frame 
+  group_by(work_day) |> # grouping by work day 
+  summarise(mean = round(mean(shower_length_min), 1), # calculating mean and rounding mean to 1 decimal
+            sd = round(sd(shower_length_min), 1), # calculating standard deviation of shower lengths rounding to one decimal point 
+    n = length(shower_length_min), # calculate number of observations for shower lengths
+    se = round(sd / sqrt(n), 1), # calculating the standard error 
+    ci_lower = round(mean - qt(0.95, n-1) * se, 1), # calculating the lower bound for 95% CI
+    ci_upper = round(mean + qt(0.95, n-1) * se, 1) # calculating the upper bound for 95% CI  
+  )
+my_data_table <- my_data_summary |> # starting with my summary 
+  select(work_day, mean, sd, n, se, ci_lower, ci_upper) |> # selecting values to display
+  flextable() |> # using flextable function to create my table 
+  set_header_labels(work_day = "work day yes or no", 
+                    mean = "Mean",
+    sd = "Standard Deviation",
+    se = "Standard Error",
+    ci_lower = "95% CI Lower",
+    ci_upper = "95% CI Upper"
+  ) |>
+  add_header_lines("Shower length in minutes on work days compared to non work days") |> #creating header lines 
+  theme_box() |> # adding a boxed theme to the table 
+  autofit() # making sure the table fits within the rendered document
+my_data_table # displaying the table
 ```
 
