@@ -5,12 +5,13 @@ author: "Leila Dagan"
 format: html
 ---
 ```{r}
+#| message: false
 library(tidyverse)
 library(here)
 library(flextable)
 library(janitor)
 library(dplyr)
-library(readr)
+my_data <- read_csv(here("data", "my_data.csv"))
 ```
 
 ### Problem 1. Personal data (30 points)
