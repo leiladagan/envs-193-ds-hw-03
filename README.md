@@ -1,3 +1,113 @@
-# ENVS 193 DS HW 03
-## Leila Dagan
-HW 3
+---
+title: "ENVS 193DS HW 03"
+date: 2025-05-08
+author: "Leila Dagan" 
+format: html
+---
+```{r}
+#| message: false
+library(tidyverse)
+library(here)
+library(flextable)
+library(janitor)
+library(dplyr)
+my_data <- read_csv(here("data", "my_data.csv"))
+```
+
+### Problem 1. Personal data (30 points)
+#### a. Data summarizing (5 points)
+
+In 1-2 sentences, describe how you could summarize your data to compare your response variable between categories or groups of your choosing. For example, are you counting observations and comparing counts between groups? Are you taking the mean and comparing means between groups? Are you finding the maximum, minimum, range? Are you adding numbers together?  
+
+Be sure to describe _why_ comparing between the groups you chose is informative. For example, you might calculate the mean number of steps you take to compare between week days, but what about those weekdays is _different_ (e.g. "I could calculate the mean number of steps I took to compare average step count between weekdays because I have more classes on Monday than on any other day of the week, so I think I walk more on Monday.")
+
+I am trying to figure out whether or not my average shower length differs between work days and non work days, as my job is outside. I could look at the shower length of work days and non work days, and compare them by looking at the both means and standard errors. 
+
+#### b. Visualization (10 points)
+
+Using the summary you described in part a, **create a visualization of your data comparing your summarized response variable between groups**. If you are calculating a mean or median, show the underlying data in addition to your summary.
+
+Use colors in your figure (that are not the default ggplot settings).
+
+Make sure your axis labels are full, readable text (not just your column names). 
+
+```{r}
+my_data_clean <- my_data |> # starting with my personal data frame 
+  clean_names() |> # simplifying my column names 
+  mutate(
+    shower_length_min = trimws(shower_length_min),  # Trim whitespace
+    shower_length_min = na_if(shower_length_min, "n/a"), # Replace "n/a" with NA
+    shower_length_min = as.numeric(shower_length_min) # Convert to numeric
+  )
+my_data_clean
+```
+
+```{r}
+ggplot(my_data_clean, aes(x = work_day, # x axis work day 
+                          y = shower_length_min, # y axis shower length 
+                          color = work_day)) +
+  # Add individual data points with jitter
+  geom_jitter(data = my_data_clean,
+              aes(x = work_day, y = shower_length_min),
+              width = 0.2, # jitter horizontally 
+              alpha = 0.4) +
+  # Customize theme and labels
+stat_summary(fun = mean, #showing the mean 
+             geom = "point", # making a point for the mean 
+             shape = 18, # changing shape to triangle 
+             size = 2, # changing size of the point 
+             color = "darkblue" # changing color of the point 
+             ) +
+  stat_summary(geom = "errorbar", # showing error bars 
+               fun.data = mean_se, # showing the mean standard error 
+               width = 0.1, # adjusting the bar width 
+               color = "purple") + # making the color of error bars purple 
+   theme_minimal() +
+  theme(legend.position = "none") + 
+  labs(x = "Work Day (yes or no)",
+       y = "Shower Length (min)",
+       title = "Shower length in minutes on Work and Non Work Days") +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 10),
+        title = element_text(size = 10)) + 
+  scale_color_manual (values = c("N" = "#123456", "Y" = "#237237"))
+
+```
+
+#### c. Caption (5 points)
+
+Write a _caption_ for your figure.
+Figure 1. Shower Length in Minutes on Work days and Non Work days. Each point represents a shower (min). N = non work day, Y = work day. 
+
+#### d. Table presentation (10 points)
+
+Using `gt` or `flextable`, create a table with the same data summary that you describe in part a and visualized in part b. For example, if you described and visualized means, make a table with means. If you need to, round any numbers to one decimal point.  
+
+Display the output.
+
+```{r}
+my_data_summary <- my_data_clean |> # starting with my clean data frame 
+  group_by(work_day) |> # grouping by work day 
+  summarise(mean = round(mean(shower_length_min), 1), # calculating mean and rounding mean to 1 decimal
+            sd = round(sd(shower_length_min), 1), # calculating standard deviation of shower lengths rounding to one decimal point 
+    n = length(shower_length_min), # calculate number of observations for shower lengths
+    se = round(sd / sqrt(n), 1), # calculating the standard error 
+    ci_lower = round(mean - qt(0.95, n-1) * se, 1), # calculating the lower bound for 95% CI
+    ci_upper = round(mean + qt(0.95, n-1) * se, 1) # calculating the upper bound for 95% CI  
+  )
+my_data_table <- my_data_summary |> # starting with my summary 
+  select(work_day, mean, sd, n, se, ci_lower, ci_upper) |> # selecting values to display
+  flextable() |> # using flextable function to create my table 
+  set_header_labels(work_day = "work day yes or no", 
+                    mean = "Mean",
+    sd = "Standard Deviation",
+    se = "Standard Error",
+    ci_lower = "95% CI Lower",
+    ci_upper = "95% CI Upper"
+  ) |>
+  add_header_lines("Shower length in minutes on work days compared to non work days") |> #creating header lines 
+  theme_box() |> # adding a boxed theme to the table 
+  autofit() # making sure the table fits within the rendered document
+my_data_table # displaying the table
+```
+
