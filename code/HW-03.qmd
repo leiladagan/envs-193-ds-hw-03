@@ -11,8 +11,6 @@ library(flextable)
 library(janitor)
 library(dplyr)
 library(readr)
-my_data <- read_csv("data/my_data.csv")
-View(my_data)
 ```
 
 ### Problem 1. Personal data (30 points)
