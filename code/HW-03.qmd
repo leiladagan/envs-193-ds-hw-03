@@ -142,4 +142,11 @@ At this point, you have seen and created a lot of figures for this class. Revisi
 
 What are the statistical tests the authors are using to address their main research question? (Note: you have already written about this in homework 2! Find that text and provide it again here!)   
 
+The essential question that the authors are addressing in this paper is, how do the researchers and staff positively impact the Leatherback Sea Turtle population at the Pacuare Nature Reserve? The authors aim to answer this by analyzing the nesting ecology and population trends of the sea turtles, in order to further develop their conservation plans. 
+
 Insert the figure or table you described in Homework 2 here.
+
+```{r}
+knitr::include_graphics("curved_carapace_clutch_size.png")
+```
+
