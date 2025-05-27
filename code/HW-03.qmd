@@ -111,3 +111,35 @@ my_data_table <- my_data_summary |> # starting with my summary
 my_data_table # displaying the table
 ```
 
+### Problem 2. Affective visualization (24 points)
+
+#### a. Describe in words what an affective visualization could look like for your personal data (3-5 sentences). (2 points)
+
+For my personal data, I wanted to track how long my showers are on work days compared to non work days. In order to bring my project back to the environmental impacts, I think it would be interesting to make a plot with my minutes showered lined up, (perhaps a histogram), and connect the dots to make a body of water. I think it would be interesting to have a shower head filling up the water. 
+
+#### b. Create a sketch (on paper) of your idea. (2 points)  
+
+Include a photo of this sketch in your submission.  
+
+#### c. Make a draft of your visualization. (12 points)  
+
+#### d. Write an artist statement. (8 points)
+
+An artist statement gives the audience context to understand your work. For each of the following points, write 1-2 sentences to address:  
+
+- the content of your piece (what are you showing?)
+- the influences (what did techniques/artists/etc. did you find influential in creating your work?)
+- the form of your work (written code, watercolor, oil painting, etc.)
+- your process (how did you create your work?)
+
+### Problem 3. Statistical critique (36 points)
+
+At this point, you have seen and created a lot of figures for this class. Revisit the paper you chose for your critique and your homework 2, where you described figures or tables in the text. Address the following in full sentences (3-4 sentences each).  
+
+**For this section of your homework, you will be evaluated on the logic, conciseness, and nuance of your critique.**  
+
+#### a. Revisit and summarize (6 points)
+
+What are the statistical tests the authors are using to address their main research question? (Note: you have already written about this in homework 2! Find that text and provide it again here!)   
+
+Insert the figure or table you described in Homework 2 here.
