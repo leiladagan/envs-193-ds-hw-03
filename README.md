@@ -27,7 +27,7 @@ Rivas, M. L., Fernández, C., & Marco, A. (2016). Nesting ecology and population
 
 ## Rendered output
 
-My rendered homework is [here](file:///Users/UCSB/Downloads/Spring-25/ES193-DS/dagan-github/envs-193-ds-hw-03/code/HW-03.html). 
+My rendered homework is [here](https://leiladagan.github.io/envs-193-ds-hw-03/code/HW-03.html). 
 
 
 
