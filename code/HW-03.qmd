@@ -151,9 +151,20 @@ knitr::include_graphics("affective_viz.jpeg")
 An artist statement gives the audience context to understand your work. For each of the following points, write 1-2 sentences to address:  
 
 - the content of your piece (what are you showing?)
+
+In my piece, I am showing how consumption of freshwater for showering can impact water availability for nearby ecosystems. I have my histogram of shower length (min), inside of a bathtub with a shower head siphoning water out of a lake, and how the receding waterline is impacting the fish. 
+
 - the influences (what did techniques/artists/etc. did you find influential in creating your work?)
+
+I was thinking about the lorax by Dr. Seuss while making this, and the fish that needed to leave the lake after the decimation of the trufula trees. 
+
 - the form of your work (written code, watercolor, oil painting, etc.)
+
+I used written code to visualize my histogram, and then the goodnotes app on my ipad to create the rest of the visualization. 
+
 - your process (how did you create your work?)
+
+After creating my initial sketch, I created the histogram using r. I then drew the rest of the visualization with my apple pencil on my ipad, using the goodnotes app. 
 
 ### Problem 3. Statistical critique (36 points)
 
