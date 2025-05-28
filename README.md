@@ -15,17 +15,19 @@ Rivas, M. L., Fernández, C., & Marco, A. (2016). Nesting ecology and population
 ├── envs-193-ds-hw-03.Rproj
 ├── README.md
 ├── code                                     # code folder
-│   ├── curved_carapace_clutch_size.png      # screenshot for problem 3 
+│   ├── affective_viz.jpeg                   # screenshot for affective vis. 
+|   ├── curved_carapace_clutch_size.png      # screenshot for problem 3 
 │   ├── HW-03_files 
 │   ├── HW-03.html                           # rendered output is from .qmd
 │   ├── HW-03.qmd
+│   ├── sketch.jpeg                          # screenshot for my sketch 
 └── data                                     # data folder
     └── my_data.csv                          # personal data for problem 1 
 ```
 
 ## Rendered output
 
-My rendered homework is [here](https://an-bui.github.io/ENVS-193DS_workshop-08/code/workshop-08_code_KEY.html).  
+My rendered homework is [here](file:///Users/UCSB/Downloads/Spring-25/ES193-DS/dagan-github/envs-193-ds-hw-03/code/HW-03.html).  
 
 
 

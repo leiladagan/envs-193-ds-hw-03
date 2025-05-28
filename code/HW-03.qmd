@@ -82,7 +82,8 @@ stat_summary(fun = mean, #showing the mean
 #### c. Caption (5 points)
 
 Write a _caption_ for your figure.
-Figure 1. Shower Length in Minutes on Work days and Non Work days. Each point represents a shower (min). N = non work day, Y = work day. Error bars represent the standard error and purple diamond point represents the mean shower length n minutes for each group. 
+
+**Figure 1.** Shower Length in Minutes on Work days and Non Work days. Each point represents a shower (min). N = non work day, Y = work day. Error bars represent the standard error and purple diamond point represents the mean shower length n minutes for each group. 
 
 #### d. Table presentation (10 points)
 
