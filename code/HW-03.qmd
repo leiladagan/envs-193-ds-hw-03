@@ -122,11 +122,11 @@ my_data_table # displaying the table
 
 For my personal data, I have been tracking different factors that could impact the length of my showers, mainly focused on whether or not I had work that day. In order to bring my project back to the environmental impacts, I think it would be interesting to make a plot with my minutes showered lined up, (perhaps a histogram), and connect the dots to make a waterline. I think it would be interesting to have a shower head attached to a lake filling up the water. 
 
-#### b. Create a sketch (on paper) of your idea. (2 points)  
+#### b. Create a sketch of your idea. (2 points)  
 
 Include a photo of this sketch in your submission.  
 ```{r}
-knitr::include_graphics("curved_carapace_clutch_size.png")
+knitr::include_graphics("code/sketch.jpeg")
 ```
 
 
