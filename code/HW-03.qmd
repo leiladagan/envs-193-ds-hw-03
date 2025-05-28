@@ -82,7 +82,7 @@ stat_summary(fun = mean, #showing the mean
 #### c. Caption (5 points)
 
 Write a _caption_ for your figure.
-Figure 1. Shower Length in Minutes on Work days and Non Work days. Each point represents a shower (min). N = non work day, Y = work day. 
+Figure 1. Shower Length in Minutes on Work days and Non Work days. Each point represents a shower (min). N = non work day, Y = work day. Error bars represent the standard error and purple diamond point represents the mean shower length n minutes for each group. 
 
 #### d. Table presentation (10 points)
 
@@ -126,7 +126,7 @@ For my personal data, I have been tracking different factors that could impact t
 
 Include a photo of this sketch in your submission.  
 ```{r}
-knitr::include_graphics("code/sketch.jpeg")
+knitr::include_graphics("sketch.jpeg")
 ```
 
 
@@ -140,6 +140,9 @@ affective_viz <- ggplot(data = my_data_clean, aes(x = shower_length_min)) + #set
        y = " ") +  # making y axis title blank 
  theme(panel.grid = element_blank()) # removing gridlines 
 affective_viz
+```
+```{r}
+knitr::include_graphics("affective_viz.jpeg")
 ```
 
 
